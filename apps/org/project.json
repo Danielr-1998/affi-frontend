@@ -1,27 +1,28 @@
 {
-  "name": "affi-platform",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "org",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "includedScripts": [],
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/affi-platform/src",
+  "sourceRoot": "./src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/affi-platform",
-        "index": "apps/affi-platform/src/index.html",
-        "main": "apps/affi-platform/src/main.ts",
+        "outputPath": "dist/org",
+        "index": "./src/index.html",
+        "main": "./src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/affi-platform/tsconfig.app.json",
+        "tsConfig": "tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/affi-platform/public"
+            "input": "public"
           }
         ],
-        "styles": ["apps/affi-platform/src/styles.css"],
+        "styles": ["./src/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -56,10 +57,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "affi-platform:build:production"
+          "buildTarget": "org:build:production"
         },
         "development": {
-          "buildTarget": "affi-platform:build:development"
+          "buildTarget": "org:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -67,17 +68,20 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "affi-platform:build"
+        "buildTarget": "org:build"
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["./src"]
+      }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "affi-platform:build",
+        "buildTarget": "org:build",
         "spa": true
       }
     }
