@@ -1,0 +1,6 @@
+<h2>Verificación 2FA</h2>
+<form (ngSubmit)="onSubmit()">
+  <input [(ngModel)]="code" name="code" placeholder="Código 2FA" required />
+  <button type="submit">Verificar</button>
+  <p *ngIf="error" style="color:red">{{ error }}</p>
+</form>
